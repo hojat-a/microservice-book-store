@@ -10,32 +10,33 @@ export class OrdersService {
     @Inject('BOOK_SERVICE') private client: ClientProxy,
     @Inject('REDIS_CONNECTION') private readonly redis
   ) { }
-  async payment({ userId, orderId }: { userId: string , orderId}) {
+  async payment({ userId, orderId }: { userId: string, orderId }) {
 
     try {
       const books = await firstValueFrom(
         this.inventory.send({
           cmd: 'reserve'
         },
-          {userId})
+          { userId })
       );
-        //create order with pending status
-        //redirect to payment gateway
+      //create order with pending status
+      //redirect to payment gateway
     } catch (error) {
       throw error
     }
   }
 
   successPayment() {
-    this.client.emit('order-fulfilled', { message: {task:'test'} }).subscribe()
     // complete the order
     // finalize the stock => request to remove the reserve and update the database
     // add score
+    //remove cart
+    this.client.emit('order-fulfilled', { message: { task: 'test' } }).subscribe()
   }
   failedPayment() {
-    this.client.emit('order-rejected', { message: {task:'test'} }).subscribe()
     // complete the order
     // finalize the stock => request to remove the reserve
+    this.client.emit('order-rejected', { message: { task: 'test' } }).subscribe()
   }
   findAll() {
     return `This action returns all orders`;
@@ -43,13 +44,5 @@ export class OrdersService {
 
   findOne(id: number) {
     return `This action returns a #${id} order`;
-  }
-
-  update(id: number, updateOrderDto: UpdateOrderDto) {
-    return `This action updates a #${id} order`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} order`;
   }
 }

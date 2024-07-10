@@ -2,7 +2,10 @@ import * as Joi from 'joi';
 
 export const createBookSchema = Joi.object({
   title: Joi.string().required(),
-  description: Joi.string().required(),
-  imageId: Joi.string().hex().length(24),
-  category: Joi.string().valid('English', 'Math')
+  author: Joi.string().required(),
+  genre: Joi.string().required(),
+  releaseYear: Joi.number().required(),
+  publisher: Joi.string().required(),
+  price: Joi.number().required(),
+  stock: Joi.number().required(),
 });

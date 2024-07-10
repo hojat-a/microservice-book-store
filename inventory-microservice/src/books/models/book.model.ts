@@ -3,32 +3,33 @@ import * as mongoose from 'mongoose';
 export const BookModel = new mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
     index: true
   },
   author: {
     type: String,
-    require: true,
+    required: true,
     index: true
   },
   genre: {
     type: String,
-    require: true
+    required: true
   },
   releaseYear: {
     type: Number,
-    require: true
+    required: true
   },
   publisher: {
     type: String,
-    require: true
+    required: true
   },
   price: {
     type: Number,
-    require: true
+    required: true
   },
   stock : {
     type: Number,
+    required: true
   },
   score: {
     type: Number,

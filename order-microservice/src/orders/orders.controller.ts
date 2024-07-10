@@ -22,14 +22,4 @@ export class OrdersController {
   findOne(@Payload() id: number) {
     return this.ordersService.findOne(id);
   }
-
-  @MessagePattern('updateOrder')
-  update(@Payload() updateOrderDto: UpdateOrderDto) {
-    return this.ordersService.update(updateOrderDto.id, updateOrderDto);
-  }
-
-  @MessagePattern('removeOrder')
-  remove(@Payload() id: number) {
-    return this.ordersService.remove(id);
-  }
 }

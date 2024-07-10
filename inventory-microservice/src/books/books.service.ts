@@ -7,7 +7,7 @@ import { BooksRepository } from './providers';
 export class BooksService {
   constructor(private readonly bookRepository: BooksRepository, @Inject('REDIS_CONNECTION') private readonly redis) {}
   create(createBookDto: CreateBookDto) {
-    return 'This action adds a new book';
+    return this.bookRepository.createBook(createBookDto);
   }
 
   findAll(data) {

@@ -9,7 +9,14 @@ export class BooksService {
   constructor(
     @Inject('INVENTORY_PACKAGE') private readonly inventory: ClientProxy
   ) {}
-  create(createBookDto: CreateBookDto) {
+  async create(createBookDto: CreateBookDto) {
+    const books = await firstValueFrom(
+      this.inventory.send({
+      cmd: 'addBook'
+    },
+    createBookDto)
+    );
+    return books;
     return 'This action adds a new book';
   }
 

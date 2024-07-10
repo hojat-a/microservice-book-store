@@ -4,6 +4,11 @@ import { Inject, Injectable } from '@nestjs/common';
 export class BooksRepository {
   constructor(@Inject('BOOK_MODEL') private books) { }
 
+  async createBook(createOrderDto) {
+    const newBook = await new this.books(createOrderDto);
+    return newBook.save();
+  }
+
   async getBooks({ page = 1, pageSize = 10, genre = null, title = null, author = null, releaseYear = null }) {
     const query = {}
     if (title) {
