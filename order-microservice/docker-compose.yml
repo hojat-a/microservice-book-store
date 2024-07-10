@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo-order
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: orders
+    ports:
+      - 27020:27017
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - mongodb_data:/data/db
+  redis:
+    image: redis:alpine
+    ports:
+      - "6382:6379"
+    volumes:
+      - redis_data:/data
+volumes:
+  mongodb_data:
+  redis_data:

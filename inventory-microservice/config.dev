@@ -1,0 +1,16 @@
+NODE_ENV=dev
+SERVER_PORT=3000
+
+# Mongo
+MONGO_HOST=localhost
+MONGO_PORT=27019
+MONGO_USERNAME=root
+MONGO_PASSWORD=example
+MONGO_DB=inventory
+MONGO_URI=mongodb://root:example@127.0.0.1:27019/inventory
+
+# Redis
+REDIS_HOST=localhost
+REDIS_PORT=6381
+REDIS_PASSWORD=
+REDIS_DB=0
